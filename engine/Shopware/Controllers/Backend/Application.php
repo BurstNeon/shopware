@@ -1140,7 +1140,10 @@ class Shopware_Controllers_Backend_Application extends Shopware_Controllers_Back
                     $value = '%' . $value . '%';
                     break;
                 }
-
+                //Fix: return if String instead of DateTime Type
+	            if (!$value instanceof \DateTime) {
+					break; 
+				}
                 $date = new DateTime($value);
                 $value = $date->format('Y-m-d');
                 if (!$this->isSearchExpression($expression)) {
